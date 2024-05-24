@@ -37,6 +37,7 @@ export class UserprofileComponent {
 
 
   getuser() {
+    debugger
     this._HttpService.GetUsers().subscribe(
       (res: any) => {
         if (res.success) {

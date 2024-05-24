@@ -1,9 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpService } from 'src/app/http.service';
+import { AuthService } from 'src/app/auth.service';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
@@ -14,53 +15,47 @@ export class AccountsComponent {
 
   constructor(
     private router: Router, 
-    private _HttpService : HttpService
+    private _HttpService: HttpService,
+    private authService: AuthService
   ) { }
-  
-  ngOnInit() {
-   
-  }
-  
+
+  ngOnInit() { }
+
   login = async (form: NgForm) => {
-    debugger;
     const body = {
       userName: form.value.username,
       password: form.value.password
     };
+
+    try {
+      debugger
       let res: any = await this._HttpService.login(body).toPromise();
-     debugger;
-     if(res.success){
-      console.log('dta',res.data)
-      localStorage.setItem('JWT', JSON.stringify(res.data));
-     }
-
+debugger
+      if (res.success) {
+        this.authService.login(res.data);  
+        Swal.fire({
+          title: 'Success!',
+          text: 'You have successfully logged in.',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          this.router.navigate(['/getusers']);
+        });
+      } else {
+        Swal.fire({
+          title: 'Error!',
+          text: 'Invalid username or password.',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Something went wrong. Please try again later.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+    }
   }
-
-
-  
-  
-  //  login = (form: NgForm) => {
-  //   debugger
-  //   const body ={
-  //     userName: form.value.username,
-  //     password: form.value.password
-  //   };
-  //   let res: any =  this._HttpService.login(body).toPromise();
-  //   // if (res.true) {
-  //     let date = res;
-  //     console.log(date );
-      
-  //   // }
-  // }
-
-
-  // isUserAuthenticated() {
-  //   const token = localStorage.getItem("jwt");
-  //   if (token && !this.jwtHelper.isTokenExpired(token)) {
-  //     return true;
-  //   }
-  //   else {
-  //     return false;
-  //   }
-  // }
 }

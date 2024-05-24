@@ -16,8 +16,12 @@ export class HttpService {
 	HostURL = environment.domain;
 	jwt: any = {};
 
+
+
 	initJWT() {
-		this.jwt = JSON.parse(localStorage.getItem("JWT") || "{}");
+		this.jwt = localStorage.getItem('JWT') || '';
+
+		// this.jwt = JSON.parse(localStorage.getItem("JWT") || "{}");
 		return !this.jwtHelper.isTokenExpired(this.jwt);
 	}
 
