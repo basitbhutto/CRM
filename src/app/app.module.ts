@@ -9,6 +9,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UnauthenticatedLayoutComponent } from './layouts/unauthenticated-layout/unauthenticated-layout.component';
 import { AuthenticatedLayoutComponent } from './layouts/authenticated-layout/authenticated-layout.component';
 import { LogoutComponent } from './layouts/logout/logout.component';
+import { ProductCategoriesComponent } from './purchaseProducts/product-details/product-categories/product-categories.component';
+import { ProductColorComponent } from './purchaseProducts/product-details/product-color/product-color.component';
+import { ProductSizeComponent } from './purchaseProducts/product-details/product-size/product-size.component';
+import { FormsModule } from '@angular/forms'; // Ensure this import
 
 
 @NgModule({
@@ -16,7 +20,10 @@ import { LogoutComponent } from './layouts/logout/logout.component';
     AppComponent,
      AuthenticatedLayoutComponent,
     UnauthenticatedLayoutComponent,
-    LogoutComponent
+    LogoutComponent,
+    ProductCategoriesComponent,
+    ProductColorComponent,
+    ProductSizeComponent
     
   ],
   imports: [
@@ -24,7 +31,9 @@ import { LogoutComponent } from './layouts/logout/logout.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     AccountManagementsModule,
-    LayoutComponent
+    LayoutComponent,
+    FormsModule // Don't forget to add FormsModule here
+
   ],
   providers: [],
   bootstrap: [AppComponent]

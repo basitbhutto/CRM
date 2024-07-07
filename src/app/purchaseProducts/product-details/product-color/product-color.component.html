@@ -1,0 +1,39 @@
+
+
+<br>
+<h2 class="" > Product Color</h2> <br>
+<form #colorForm="ngForm" (ngSubmit)="saveColor(colorForm)">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Color Name" aria-label="Color Name" name="name" [(ngModel)]="colorFormModel.name" required>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-success" type="submit">Save Color</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Color</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let color of data">
+        <th scope="row">{{color.id}}</th>
+        <td>{{color.name}}</td>
+        <td><button class="btn btn-primary btn-sm" (click)="editColor(color)">Edit</button></td>
+
+      </tr>
+    </tbody>
+</table>
+
+  

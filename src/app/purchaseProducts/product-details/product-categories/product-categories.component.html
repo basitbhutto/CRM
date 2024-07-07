@@ -1,0 +1,39 @@
+
+
+<br>
+<h2 class="" > Product Categories</h2> <br>
+<form #categoryForm="ngForm" (ngSubmit)="saveCategory(categoryForm)">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Category Name" aria-label="Category Name" name="name" [(ngModel)]="categoryFormModel.name" required>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-success" type="submit">Save Category</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Category</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let category of data">
+        <th scope="row">{{category.id}}</th>
+        <td>{{category.name}}</td>
+        <td><button class="btn btn-primary btn-sm" (click)="editCategory(category)">Edit</button></td>
+
+      </tr>
+    </tbody>
+</table>
+
+  

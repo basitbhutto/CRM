@@ -20,16 +20,15 @@ import { AvatarModule } from 'primeng/avatar';
 import { StyleClassModule } from 'primeng/styleclass';
 import { Sidebar } from 'primeng/sidebar';
 import {AuthService } from '../../auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css'],
-
   standalone: true,
-    imports: [SidebarModule, ButtonModule, RippleModule, AvatarModule, StyleClassModule]
+  imports: [SidebarModule, ButtonModule, RippleModule, AvatarModule, StyleClassModule, RouterModule] // Add RouterModule here
 })
 export class LayoutComponent {
   constructor(private router: Router, private authService: AuthService) {}
